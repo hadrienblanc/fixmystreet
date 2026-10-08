@@ -108,6 +108,20 @@ sub fetch_area_children {
     return $areas;
 }
 
+=item * Uses its own geocoder for asset searching
+
+Geocoder will search asset layers if the pattern
+matches (ignorecase) 'Bridge number', 'Bridge: number',
+'Lock number', 'Lock: number' - which can be
+supplemented - 'Lock: number Grand Union Canal'.
+
+If the pattern is not matched will default
+to the OSM geocoder for standard searching
+
+=cut
+
+sub get_geocoder { 'CanalRiverTrust' }
+
 =back
 
 =head2 report_validation
