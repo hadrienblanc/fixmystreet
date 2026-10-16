@@ -1571,11 +1571,12 @@ fixmystreet.message_controller = (function() {
             return ($('#' + stopperId).length);
         },
 
-        asset_not_found: function() {
+        // Pass msg_id to show a message other than the layer's no_asset_msg_id
+        asset_not_found: function(msg_id) {
             if (!this.visibility) {
                 responsibility_off(this, 'asset');
             } else {
-                responsibility_on(this, 'asset');
+                responsibility_on(this, 'asset', msg_id);
             }
         },
 
@@ -1618,13 +1619,14 @@ fixmystreet.message_controller = (function() {
 
         // For canal tunnels. Using road_not_found above means that sometimes
         // the responsibility message is not shown because there is a
-        // fixmystreet.assets.selectedFeature().
-        tunnel_not_found: function(layer) {
+        // fixmystreet.assets.selectedFeature(). Pass msg_id to show a
+        // message other than the layer's no_asset_msg_id.
+        tunnel_not_found: function(layer, msg_id) {
             if (!layer.visibility) {
                 responsibility_off(layer, 'road');
             }
             else {
-                responsibility_on(layer, 'road');
+                responsibility_on(layer, 'road', msg_id);
             }
         },
 
